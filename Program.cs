@@ -8,13 +8,11 @@ namespace ConsoleApplication
 {
     public class Program
     {
-        const string PRICINGRECOMMENDATIONURL = "***REMOVED***";
-        
         public static void Main(string[] args)
         {
             Console.WriteLine("Requesting Unactioned Pricing Recommendations!");
 
-            var client = new HttpClient { BaseAddress = new Uri(PRICINGRECOMMENDATIONURL) };
+            var client = new HttpClient { BaseAddress = new Uri(ConstantSettings.RequestUrl) };
             var response = client.GetAsync("").Result;
             var responseBody = response.Content.ReadAsStringAsync().Result;
             var results = JsonConvert.DeserializeObject<List<PricingRecommendation>>(responseBody);
